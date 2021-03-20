@@ -34,6 +34,45 @@
         color: crimson;
       }
 
+      .side-message {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 32px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+      }
+
+      .message {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 8px 16px;
+        box-shadow: 0 0 13px rgba(0, 0, 0, .22);
+        font-family: -apple-system, "Roboto", sans-serif;
+      }
+
+      .side-message .message{
+        margin-right: 8px;
+      }
+
+      .side-message .icon {
+        height: 64px;
+        cursor: pointer;
+      }
+
+      .secret {
+        position: fixed;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, .35);
+      }
+
       @keyframes heartbeats {
         0% {
           width: 35vw;
@@ -53,6 +92,32 @@
       }
     </style>
     <img src="./heart.svg" alt="" class="heart" />
-    <h1 class="motd">Будь все такой же прекрасной как сегодня:3</h1>
+    <h1 class="motd">В котиках бывают секреты<3</h1>
+    <div class="side-message">
+      <div class="message">Я очень по тебе скучаю:(</div>
+      <img id="cat_button" src="./cat_emoji.png" alt="" class="icon">
+    </div>
+    <div id="secret" class="secret"></div>
+    <script>
+      const catButton = document.getElementById("cat_button");
+      const secret = document.getElementById("secret");
+      const message = document.createElement("div");
+      message.classList.add("message")
+      catButton.addEventListener("mouseover", (e) => {
+        catButton.setAttribute("src", "./cat_kiss.png")
+      })
+      catButton.addEventListener("mouseleave", (e) => {
+        catButton.setAttribute("src", "./cat_emoji.png")
+      })
+      catButton.addEventListener("click", (e) => {
+        secret.style.display = "flex";
+        message.innerText = "";
+        message.append("22.03.2021 я тебя крепко обниму и тебя будет ждать кое-что неожиданное:3")
+        secret.append(message)
+      })
+      secret.addEventListener("click", (e) => {
+        secret.style.display = "none";
+      })
+    </script>
   </body>
 </html>
